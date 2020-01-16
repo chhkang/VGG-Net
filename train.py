@@ -16,7 +16,7 @@ for i in param:
 classes =  ('airplance', 'bird', 'car', 'cat', 'deer', 'dog', 'horse', 'monkey', 'ship', 'truck')
 
 criterion = nn.CrossEntropyLoss().cuda()
-optimizer = optim.Adam(vgg_.parameters(),lr=0.00001)
+optimizer = optim.Adam(vgg_.parameters(),lr=0.01)
 
 # get some random training images
 dataiter = iter(dataloader.trainloader)
@@ -27,7 +27,7 @@ utils.imshow(torchvision.utils.make_grid(images))
 # print labels
 print(' '.join('%5s' % classes[labels[j]] for j in range(4)))
 
-for epoch in range(100):  # loop over the dataset multiple times
+for epoch in range(10):  # loop over the dataset multiple times
     running_loss = 0.0
     for i, data in enumerate(dataloader.trainloader, 0):
         # get the inputs
