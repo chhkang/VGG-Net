@@ -13,14 +13,16 @@ print(len(param))
 for i in param:
     print(i.shape)
 
-classes =  ('airplance', 'bird', 'car', 'cat', 'deer', 'dog', 'horse', 'monkey', 'ship', 'truck')
+classes =  ('airplance', 'automobile','bird','cat','deer','dog','frog','horse','ship','truck')
 
 criterion = nn.CrossEntropyLoss().cuda()
-optimizer = optim.Adam(vgg_.parameters(),lr=0.01)
+optimizer = optim.Adam(vgg_.parameters(),lr=0.001)
+scheduler = optim.lr_scheduler.MultiStepLR(optimizer,milestones=[2,5],gamma = 0.1)
 
 # get some random training images
 dataiter = iter(dataloader.trainloader)
 images, labels = dataiter.next()
+
 
 # show images
 utils.imshow(torchvision.utils.make_grid(images))
@@ -28,6 +30,7 @@ utils.imshow(torchvision.utils.make_grid(images))
 print(' '.join('%5s' % classes[labels[j]] for j in range(4)))
 
 for epoch in range(10):  # loop over the dataset multiple times
+    print(epoch)
     running_loss = 0.0
     for i, data in enumerate(dataloader.trainloader, 0):
         # get the inputs
@@ -44,12 +47,12 @@ for epoch in range(10):  # loop over the dataset multiple times
         #print(labels.shape)
         loss = criterion(outputs, labels)
         loss.backward()
-        optimizer.step()
+        scheduler.step()
 
         if(loss.item() > 1000):
             print(loss.item())
-            for param in vgg_.parameters():
-                print(param.data)
+            #for param in vgg_.parameters():
+                #print(param.data)
         # print statistics
         running_loss += loss.item()
         if i % 50 == 49:    # print every 2000 mini-batches
