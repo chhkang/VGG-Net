@@ -21,10 +21,12 @@ def cifar10_loader(batch_size, num_workers, datapath, cuda):
     transform_train = transforms.Compose([
         transforms.RandomCrop(32, padding=4),
         transforms.RandomHorizontalFlip(),
+        transforms.Resize(96),
         transforms.ToTensor(),
         normalize,
     ])
     transform_val = transforms.Compose([
+        transforms.Resize(96),
         transforms.ToTensor(),
         normalize,
     ])

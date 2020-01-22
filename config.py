@@ -11,13 +11,13 @@ def config():
                              ' (default: cifar10)')
     parser.add_argument('-j', '--workers', default=8, type=int, metavar='N',
                         help='number of data loading workers (default: 8)')
-    parser.add_argument('-b', '--batch-size', default=256, type=int, metavar='N',
+    parser.add_argument('-b', '--batch-size', default=128, type=int, metavar='N',
                         help='mini-batch size (default: 256), this is the total '
                              'batch size of all GPUs on the current node when '
                              'using Data Parallel')
-    parser.add_argument('--epochs', default=74, type=int, metavar='N',
+    parser.add_argument('--epochs', default=200, type=int, metavar='N',
                         help='number of total epochs to run (default: 200)')
-    parser.add_argument('--lr', '--learning-rate', default=0.1, type=float,
+    parser.add_argument('--lr', '--learning-rate', default=0.05, type=float,
                         metavar='LR', help='initial learning rate (defualt: 0.1)',
                         dest='lr')
     parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
@@ -25,8 +25,8 @@ def config():
     parser.add_argument('--wd', '--weight-decay', default=5e-4, type=float,
                         metavar='W', help='weight decay (default: 5e-4)',
                         dest='weight_decay')
-    parser.add_argument('-p', '--print-freq', default=10, type=int,
-                        metavar='N', help='print frequency (default: 10)')
+    parser.add_argument('-p', '--print-freq', default=40, type=int,
+                        metavar='N', help='print frequency (default: 50)')
     parser.add_argument('--ckpt', default='', type=str, metavar='PATH',
                         help='Path of checkpoint for resuming/testing '
                              'or retraining model (Default: none)')
